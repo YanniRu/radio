@@ -8,173 +8,105 @@ public class RadioTest {
     Radio radio = new Radio();
 
     @Test
-<<<<<<< Updated upstream
-    public void choiceStation() {
-        Radio radio = new Radio();
-=======
-    public void choiceStation() { // Выбор станции
->>>>>>> Stashed changes
-
+    void choiceStation() {
         assertEquals(0, radio.getCurrentStation());
-        radio.setCurrentStation(4);
-        assertEquals(4, radio.getCurrentStation());
+        radio.setCurrentStation(5);
+        assertEquals(5, radio.getCurrentStation());
     }
-
     @Test
-<<<<<<< Updated upstream
-    public void SwitchStationAboveMax() {
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(10);
-
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void SwitchStationUnderMin() {
-        Radio radio = new Radio();
-
+    void nextMinStation() {
         radio.setCurrentStation(-1);
-
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(0, radio.getCurrentStation());
     }
-
     @Test
-    public void SwitchStationOnMax() {
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(9);
-
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void nextSwitchStation() {
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(2);
-=======
-    public void nextStation() {  // след станция
-        radio.setCurrentStation(5);
->>>>>>> Stashed changes
-        radio.nextStation();
-        assertEquals(6, radio.getCurrentStation());
-    }
-
-    @Test
-<<<<<<< Updated upstream
-    public void prevSwitchStation() {
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(6);
-=======
-    public void nextStationAboveMax() { // переключение свыше макс
+    void nextStationAboveMax() {
         radio.setCurrentStation(10);
         assertEquals(0, radio.getCurrentStation());
     }
-
     @Test
-    public void nextStationOnMax() { // переключение с макс станции
+    void nextStation() {
+        radio.setCurrentStation(6);
+        radio.nextStation();
+        assertEquals(7, radio.getCurrentStation());
+    }
+    @Test
+    void nextOnMaxStation1() {
         radio.setCurrentStation(9);
         radio.nextStation();
         assertEquals(0, radio.getCurrentStation());
     }
+
     @Test
-    public void prevStation() { // пред станция
-        radio.setCurrentStation(5);
->>>>>>> Stashed changes
+    void nextOnMaxStation2() {
+        radio.setCurrentStation(10);
+        radio.nextStation();
+        assertEquals(1, radio.getCurrentStation());
+    }
+    @Test
+    void prevStation() {
+        radio.setCurrentStation(4);
         radio.prevStation();
-        assertEquals(4, radio.getCurrentStation());
+        assertEquals(3, radio.getCurrentStation());
     }
 
     @Test
-<<<<<<< Updated upstream
-=======
-    public void prevStationUnderMin() { // переключение ниже мин
+    void prevMinStation1() {
         radio.setCurrentStation(0);
         radio.prevStation();
         assertEquals(9, radio.getCurrentStation());
     }
 
     @Test
-    public void prevStationUnderMin2() { // переключение ниже мин 2
+    void prevMinStation2() {
         radio.setCurrentStation(-1);
         radio.prevStation();
         assertEquals(9, radio.getCurrentStation());
     }
-
     @Test
-    public void choiceVolume() { // выбор звука
+    void choiceVolume() {
         assertEquals(0, radio.getCurrentVolume());
-        radio.setCurrentVolume(3);
-        assertEquals(3, radio.getCurrentVolume());
+        radio.setCurrentVolume(5);
+        assertEquals(5, radio.getCurrentVolume());
     }
     @Test
->>>>>>> Stashed changes
-    public void increaseVolume() {
-        radio.setCurrentVolume(50);
+    void increaseVolume() {
+        radio.setCurrentVolume(9);
         radio.increaseVolume();
-        assertEquals(51, radio.getCurrentVolume());
-    }
-    @Test
-    public void choiceVolume() {
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(30);
-
-        int expected = 30;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(10, radio.getCurrentVolume());
     }
 
     @Test
-    public void increaseVolumeAboveMax() {
+    void increaseMaxVolume1() {
         radio.setCurrentVolume(100);
         radio.increaseVolume();
         assertEquals(100, radio.getCurrentVolume());
     }
-<<<<<<< Updated upstream
 
-
-=======
     @Test
-    public void increaseVolumeAboveMax2() {
+    void increaseMaxVolume2() {
         radio.setCurrentVolume(101);
         radio.increaseVolume();
         assertEquals(1, radio.getCurrentVolume());
     }
->>>>>>> Stashed changes
     @Test
-    public void decreaseVolume() {
-        radio.setCurrentVolume(5);
+    void decreaseVolume() {
+        radio.setCurrentVolume(6);
         radio.decreaseVolume();
-        assertEquals(4, radio.getCurrentVolume());
+        assertEquals(5, radio.getCurrentVolume());
     }
+
     @Test
-    public void decreaseVolumeUnderMin() {
+    void decreaseMinVolume1() {
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
         assertEquals(0, radio.getCurrentVolume());
     }
-<<<<<<< Updated upstream
-}
-=======
+
     @Test
-    public void decreaseVolumeUnderMin2() {
+    void decreaseMinVolume2() {
         radio.setCurrentVolume(-1);
         radio.decreaseVolume();
         assertEquals(0, radio.getCurrentVolume());
     }
-
 }
->>>>>>> Stashed changes
+

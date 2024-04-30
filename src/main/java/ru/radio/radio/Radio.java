@@ -9,7 +9,6 @@ public class Radio {
     private int maxVolume = 100;
 
     public int getCurrentStation() {
-
         return currentStation;
     }
 
@@ -17,37 +16,20 @@ public class Radio {
         if (currentStation < minStation || currentStation > maxStation) {
             return;
         }
-<<<<<<< Updated upstream
-        if (newCurrentStation >= 9) {
-            return;
-        }
-        currentStation = newCurrentStation;
-    }
-
-    public void nextStation() {
-        if (currentStation >= 9) {
-            setCurrentStation(0);
-=======
         this.currentStation = currentStation;
     }
 
     public void nextStation() {
         if (maxStation <= currentStation) {
             setCurrentStation(minStation);
->>>>>>> Stashed changes
         } else {
             setCurrentStation(currentStation + 1);
         }
     }
 
     public void prevStation() {
-<<<<<<< Updated upstream
-        if (currentStation <= 0) {
-            setCurrentStation(9);
-=======
         if (currentStation <= minStation) {
             setCurrentStation(maxStation);
->>>>>>> Stashed changes
         } else {
             setCurrentStation(currentStation - 1);
         }
@@ -65,30 +47,14 @@ public class Radio {
     }
 
     public void increaseVolume() {
-<<<<<<< Updated upstream
-
-        if (currentVolume < 100) {
-            currentVolume++;
-        } else {
-            return;
-        }
-    }
-
-    public void decreaseVolume() {
-=======
         if (currentVolume < maxVolume) {
-            currentVolume = currentVolume + 1;
+            currentVolume++;
         }
     }
->>>>>>> Stashed changes
 
     public void decreaseVolume() {
         if (currentVolume > 0) {
-<<<<<<< Updated upstream
             currentVolume--;
-=======
-            currentVolume = currentVolume - 1;
->>>>>>> Stashed changes
         }
     }
 }
