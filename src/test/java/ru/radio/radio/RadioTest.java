@@ -55,6 +55,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+<<<<<<< Updated upstream
     @Test
     public void nextStationOnMax2() { // переключение с макс станции 2
         Radio radio = new Radio();
@@ -67,6 +68,9 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+=======
+
+>>>>>>> Stashed changes
 
     @Test
     public void prevStation() { // пред станция
@@ -93,6 +97,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+<<<<<<< Updated upstream
     @Test
     public void prevStationUnderMin2() { // переключение ниже мин 2
         Radio radio = new Radio();
@@ -105,6 +110,9 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+=======
+
+>>>>>>> Stashed changes
     @Test
     public void choiceVolume() { // выбор звука
         Radio radio = new Radio();
@@ -191,4 +199,8 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

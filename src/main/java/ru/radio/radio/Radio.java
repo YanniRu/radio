@@ -54,7 +54,10 @@ public class Radio {
 
         if (currentVolume < 100) {
             setCurrentVolume(currentVolume + 1);
+<<<<<<< Updated upstream
             ;
+=======
+>>>>>>> Stashed changes
         }
     }
     public void decreaseVolume() {
