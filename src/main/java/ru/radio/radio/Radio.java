@@ -14,25 +14,25 @@ public class Radio {
         if (newCurrentStation < 0) {
             return;
         }
-        if (newCurrentStation >= 9) {
+        if (newCurrentStation > 9) {
             return;
         }
         currentStation = newCurrentStation;
     }
 
     public void nextStation() {
-        if (currentStation >= 9) {
-            setCurrentStation(0);
-        } else {
+        if (currentStation < 9) {
             setCurrentStation(currentStation + 1);
+        } else {
+            currentStation = 0;
         }
     }
 
     public void prevStation() {
-        if (currentStation <= 0) {
-            setCurrentStation(9);
-        } else {
+        if (currentStation > 0) {
             setCurrentStation(currentStation - 1);
+        } else {
+            currentStation = 9;
         }
     }
 
@@ -53,16 +53,14 @@ public class Radio {
     public void increaseVolume() {
 
         if (currentVolume < 100) {
-            currentVolume++;
-        } else {
-            return;
+            setCurrentVolume(currentVolume + 1);
+            ;
         }
     }
-
     public void decreaseVolume() {
 
         if (currentVolume > 0) {
-            currentVolume--;
+            setCurrentVolume(currentVolume - 1);
         }
     }
 }
