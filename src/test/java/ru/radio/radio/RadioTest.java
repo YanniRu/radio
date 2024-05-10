@@ -1,186 +1,109 @@
 package ru.radio.radio;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RadioTest {
+    Radio radio = new Radio(10);
+    Radio radio1 = new Radio();
 
     @Test
-    public void choiceStation() { // Выбор станции
-        Radio radio = new Radio();
+    void choiceStation() {
 
         radio.setCurrentStation(5);
-
-        int expected = 5;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(5, radio.getCurrentStation());
     }
 
     @Test
-    public void nextStation() {  // след станция
-        Radio radio = new Radio();
+    void nextMinStation() {
+        radio.setCurrentStation(-1);
+        assertEquals(0, radio.getCurrentStation());
+    }
 
-        radio.setCurrentStation(2);
+    @Test
+    void nextStationAboveMax() {
+        radio.setCurrentStation(11);
+        assertEquals(0, radio.getCurrentStation());
+    }
+    @Test
+    void nextStation() {
+        radio.setCurrentStation(6);
         radio.nextStation();
-
-        int expected = 3;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(7, radio.getCurrentStation());
     }
-
     @Test
-    public void nextStationAboveMax() { // переключение свыше макс
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(10);
-
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void nextStationOnMax() { // переключение с макс станции
-        Radio radio = new Radio();
-
+    void nextOnMaxStation1() {
         radio.setCurrentStation(9);
         radio.nextStation();
-
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
-    public void prevStation() { // пред станция
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(6);
+    void prevStation() {
+        radio.setCurrentStation(4);
         radio.prevStation();
-
-        int expected = 5;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(3, radio.getCurrentStation());
     }
 
     @Test
-    public void prevStationUnderMin() { // переключение ниже мин
-        Radio radio = new Radio();
-
-        radio.setCurrentStation(-1);
-        radio.prevStation();
-
-        int expected = 9;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void prevStationUnderMin2() { // переключение ниже мин 2
-        Radio radio = new Radio();
-
+    void prevMinStation1() {
         radio.setCurrentStation(0);
         radio.prevStation();
-
-        int expected = 9;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(9, radio.getCurrentStation());
     }
 
     @Test
-    public void choiceVolume() { // выбор звука
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(30);
-
-        int expected = 30;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+    void prevMinStation2() {
+        radio.setCurrentStation(-1);
+        radio.prevStation();
+        assertEquals(9, radio.getCurrentStation());
     }
-
     @Test
-    public void increaseVolume() {
-        Radio radio = new Radio();
+    void choiceVolume() {
 
-        radio.setCurrentVolume(40);
+        radio.setCurrentVolume(35);
+        assertEquals(35, radio.getCurrentVolume());
+    }
+    @Test
+    void increaseVolume() {
+        radio.setCurrentVolume(99);
         radio.increaseVolume();
-
-        int expected = 41;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
-    public void increaseVolumeAboveMax() {
-        Radio radio = new Radio();
-
+    void increaseMaxVolume1() {
         radio.setCurrentVolume(100);
         radio.increaseVolume();
-
-        int expected = 100;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
-    public void increaseVolumeAboveMax2() {
-        Radio radio = new Radio();
-
+    void increaseMaxVolume2() {
         radio.setCurrentVolume(101);
         radio.increaseVolume();
-
-        int expected = 1;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(1, radio.getCurrentVolume());
     }
-
     @Test
-    public void decreaseVolume() {
-        Radio radio = new Radio();
-
-        radio.setCurrentVolume(30);
+    void decreaseVolume() {
+        radio.setCurrentVolume(60);
         radio.decreaseVolume();
-
-        int expected = 29;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(59, radio.getCurrentVolume());
     }
 
     @Test
-    public void decreaseVolumeUnderMin() {
-        Radio radio = new Radio();
-
+    void decreaseMinVolume1() {
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
-
-        int expected = 0;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
-    public void decreaseVolumeUnderMin2() {
-        Radio radio = new Radio();
-
+    void decreaseMinVolume2() {
         radio.setCurrentVolume(-1);
         radio.decreaseVolume();
-
-        int expected = 0;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        assertEquals(0, radio.getCurrentVolume());
     }
 }
+
