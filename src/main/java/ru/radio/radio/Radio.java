@@ -1,16 +1,25 @@
 package ru.radio.radio;
 
 public class Radio {
-    private int currentStation;
+
     private int minStation = 0;
     private int maxStation = 9;
-    private int currentVolume;
+    private int currentStation = minStation;
     private int minVolume = 0;
     private int maxVolume = 100;
+    private int currentVolume = minVolume;
+
+    public Radio(int count) {
+        this.maxStation = count - 1;
+    }
+
+    public Radio() {
+    }
 
     public int getCurrentStation() {
         return currentStation;
     }
+
 
     public void setCurrentStation(int currentStation) {
         if (currentStation < minStation || currentStation > maxStation) {
@@ -20,18 +29,18 @@ public class Radio {
     }
 
     public void nextStation() {
-        if (maxStation <= currentStation) {
-            setCurrentStation(minStation);
+        if (currentStation == maxStation) {
+            this.currentStation = minStation;
         } else {
-            setCurrentStation(currentStation + 1);
+            this.currentStation = currentStation + 1;
         }
     }
 
     public void prevStation() {
-        if (currentStation <= minStation) {
-            setCurrentStation(maxStation);
+        if (currentStation == minStation) {
+            this.currentStation = maxStation;
         } else {
-            setCurrentStation(currentStation - 1);
+            this.currentStation = currentStation - 1;
         }
     }
 
@@ -47,15 +56,17 @@ public class Radio {
     }
 
     public void increaseVolume() {
-        if (currentVolume < maxVolume) {
-            currentVolume++;
+        if (currentVolume == maxVolume) {
+            return;
         }
+        this.currentVolume = currentVolume + 1;
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume--;
+        if (currentVolume == minVolume) {
+            return;
         }
+        this.currentVolume = currentVolume - 1;
     }
 }
 
